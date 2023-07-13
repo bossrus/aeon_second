@@ -217,15 +217,18 @@ let common = {
     isNumericKey: (event, allowComma) =>{
         let key = event.key;
 
-        if (
-            key === 'ArrowRight' ||
-            key === 'ArrowLeft' ||
-            key === 'Home' ||
-            key === 'End' ||
-            key === 'Control' ||
-            key === 'Tab' ||
-            key === 'Delete' ||
-            key === 'Backspace') return;
+        let skipKeys = [
+            'ArrowRight',
+            'ArrowLeft',
+            'Home',
+            'End',
+            'Control',
+            'Tab',
+            'Delete',
+            'Backspace',
+        ]
+
+        if (skipKeys.includes(key)) return;
 
         let allowKey = false;
         if (allowComma) {
@@ -233,7 +236,6 @@ let common = {
         } else {
             allowKey = /^[0-9]$/.test(key);
         }
-        console.log('keyCode = ', key, '; allowKey =', allowKey);
         if (!allowKey) {
             event.preventDefault();
         }
