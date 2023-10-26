@@ -201,9 +201,9 @@ let common = {
             user_id: user_id,
             first_name: gv('first_name'),
             last_name: gv('last_name'),
-            phone: gv('phone'),
+            phone: gv('phone').match(/\d+/g).join(''),
             email: gv('email').toLowerCase(),
-            plot_id: gv('plots'),
+            plot_id: gv('plots').match(/[0-9,]+/g).join(''),
             offset: global.offset
         };
         let location = {dpt: 'users', act: 'edit_update'};
